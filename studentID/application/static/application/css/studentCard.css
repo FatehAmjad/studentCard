@@ -1,0 +1,33 @@
+/* Customize the appearance of the student ID card modal */
+.modal-dialog {
+    max-width: 500px; /* Adjust the width as needed */
+}
+
+.curtin-logo {
+    max-width: 150px; /* Adjust the logo size as needed */
+    display: block;
+    margin: 0 5px 20px; /* Center the logo and add some space below */
+}
+
+.student-photo {
+    max-width: 120px; /* Adjust the student image size as needed */
+    display: block;
+    margin: 0 auto 20px; /* Center the student image and add some space below */
+    border: 2px solid #ccc; /* Add a border to the student image */
+    border-radius: 0%; /* Make the student image circular */
+}
+
+#studentIDCardLabel {
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.student-info {
+    text-align: center;
+}
+
+/* Optional: Add additional styles for the student details if needed */
+.student-info p {
+    margin-bottom: 10px;
+}

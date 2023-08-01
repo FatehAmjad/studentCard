@@ -1,0 +1,57 @@
+{% extends './Base.html' %}
+{% load static %}
+
+{% block content %}  
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'application/css/applicationForm.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> StudentID card program </title>
+</head>
+  
+<header>
+    <h1>Welcome! Kindly enter your details below.</h1>
+</header>
+
+<main>
+    <!-- Card -->
+    <div class="card border-dark text-black bg-warning mb-3">
+        <!-- Card content -->
+        <div class="card-body">
+        <!-- Title -->
+        <h4 class="card-title text-center">Student ID Form</h4>
+        <!-- Form -->
+        <form method="POST" enctype="multipart/form-data" action="{% url 'form' %}">
+            {% csrf_token %}
+            
+            <label for="sImages"> Add your image here. </label><br>
+            <input type="file" name="sImages"><br><br>
+
+            <label for="studentID">Student ID:</label>
+            <input class="form-control" type="text" id="studentID" name="studentID" maxlength="8" required><br>
+
+            <label for="studentName">Student Name:</label>
+            <input class="form-control" type="text" id="studentName" name="studentName" required><br>
+            
+            <div class="form-group">
+                <label for="courseEnrolled">Course Enrolled:</label>
+                <select class="form-control" id="courseEnrolled" name="courseEnrolled">
+                    <option>Foundation</option>
+                    <option>IT</option>
+                    <option>CyberSecurity</option>
+                    <option>Humanities</option>
+                    <option>Business</option>
+                    <option>Psychology</option>
+                </select>
+            </div>
+
+            <label for="dateEnrolled">Date Enrolled:</label>
+            <input class="form-control" type="date" id="dateEnrolled" name="dateEnrolled" required><br>
+            
+            <input class="btn btn-primary" type="submit" value="Submit"> 
+        </form>
+        </div>
+    </div>
+</main>
+{% endblock %}
+        

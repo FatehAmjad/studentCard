@@ -1,0 +1,115 @@
+{% extends './Base.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'application/css/studentCard.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function updateStatus(studentId) {
+            var selectedStatus = $("select[name='status-" + studentId + "']").val();
+            if (selectedStatus) {
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'update_status' %}",
+                    data: {
+                        student_id: studentId,
+                        status: selectedStatus,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success: function (data) {
+                        // Refresh the page after successful update
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Error occurred while updating status.");
+                    }
+                });
+            } else {
+                alert("Please select a valid status.");
+            }
+        }
+    </script>
+
+</head>
+
+<div class="d-flex justify-content-center">
+    <div class="card w-100">
+        <div class="card-body">
+            <h4 class="card-title text-center">Student ID Cards List</h4>
+            <table class="table table-bordered table-hover text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th> Student ID </th>
+                        <th> Student Name </th>
+                        <th> Course </th>
+                        <th> Card Preview </th>
+                        <th> Status </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in sList %}
+                    <tr>
+                        <td> {{ student.student_id }} </td>
+                        <td> {{ student.student_name }} </td>
+                        <td> {{ student.course }} </td>
+                        <td>
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal{{ student.student_id }}">Card</button>
+                            <div class="modal fade" id="exampleModal{{ student.student_id }}" tabindex="-1" role="dialog" aria-labelledby="studentIDCardLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <!-- Display the Curtin University logo -->
+                                            <img src="{% static 'application/images/curtinLogo.png' %}" alt="Curtin University Logo" class="curtin-logo">
+
+                                            <h4 class="modal-title" id="studentIDCardLabel"> Card preview.</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Display the student image -->
+                                            <img src="{{ student.studentImages.url }}" class="img-fluid student-photo" alt="Student Image">
+
+                                            <!-- Student ID Card Content -->
+                                            <div class="student-info">
+                                                <p>Student Name: {{ student.student_name }}</p>
+                                                <p>Student ID: {{ student.student_id}}</p>
+                                                <p>Course: {{ student.course }}</p>
+                                                <p>Date Joined: {{ student.begin_date }}</p>
+                                                <!-- Add any other details you want to display on the student ID card -->
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- New Status dropdown -->
+                            <select name="status-{{ student.student_id }}" class="form-control">
+                                <option value="">---------</option>
+                                <option value="Enrolled"{% if student.status == 'Enrolled' %} selected{% endif %}>Enrolled</option>
+                                <option value="Withdrawn"{% if student.status == 'Withdrawn' %} selected{% endif %}>Withdrawn</option>
+                                <option value="on-leave"{% if student.status == 'on-leave' %} selected{% endif %}>On Leave</option>
+                                <option value="Paused"{% if student.status == 'Paused' %} selected{% endif %}>Paused</option>
+                                <option value="Terminated"{% if student.status == 'Terminated' %} selected{% endif %}>Terminated</option>
+                                <option value="Graduated"{% if student.status == 'Graduated' %} selected{% endif %}>Graduated</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" onclick="updateStatus({{ student.student_id }})">Save changes</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
