@@ -10,6 +10,7 @@
     <script>
         function updateStatus(studentId) {
             var selectedStatus = $("select[name='status-" + studentId + "']").val();
+            var selectedCardStatus = $("select[name='card_status-" + studentId + "']").val();
             if (selectedStatus) {
                 $.ajax({
                     type: "POST",
@@ -17,6 +18,7 @@
                     data: {
                         student_id: studentId,
                         status: selectedStatus,
+                        card_status: selectedCardStatus,
                         csrfmiddlewaretoken: '{{ csrf_token }}'
                     },
                     success: function (data) {
@@ -46,7 +48,8 @@
                         <th> Student Name </th>
                         <th> Course </th>
                         <th> Card Preview </th>
-                        <th> Status </th>
+                        <th> University status </th>
+                        <th> Card status </th>
                         <th></th>
                     </tr>
                 </thead>
@@ -100,6 +103,15 @@
                                 <option value="Paused"{% if student.status == 'Paused' %} selected{% endif %}>Paused</option>
                                 <option value="Terminated"{% if student.status == 'Terminated' %} selected{% endif %}>Terminated</option>
                                 <option value="Graduated"{% if student.status == 'Graduated' %} selected{% endif %}>Graduated</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="card_status-{{ student.student_id }}" class="form-control">
+                                <option value="">---------</option>
+                                <option value="Collected"{% if student.card_status == 'Collected' %} selected{% endif %}>Collected</option>
+                                <option value="Lost"{% if student.card_status == 'Lost' %} selected{% endif %}>Lost</option>
+                                <option value="Renewed"{% if student.card_status == 'Renewed' %} selected{% endif %}>Renewed</option>
+                                <option value="In-process"{% if student.card_status == 'In-process' %} selected{% endif %}>In-process</option>
                             </select>
                         </td>
                         <td>

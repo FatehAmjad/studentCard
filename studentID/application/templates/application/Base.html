@@ -30,10 +30,18 @@
                     </li>
                 </ul>
             </div>
+            <ul class="mavbar-nav ml-auto">
+                {% if user.is_authenticated and user.is_staff %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'admin:logout' %}?next={% url 'form' %}">Logout</a>
+                    </li>
+                {% endif %}
+            </ul>
         </nav>
         {% block content %}{% endblock %}
     </body>
     <footer>
-        &copy; 2023 CurtinUniversity. All rights reserved.
+        &copy; 2023 CurtinUniversity. All rights reserved.<br>
+        Developed by: Fateh Din Mohammed Amjad
     </footer>
 </html>

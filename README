@@ -1,0 +1,41 @@
+----- Welcome to student ID-card application! -----
+----- Developed by: Fateh Din Mohammed Amjad -----
+
+-> This application program was created using Python, Front-end stack, Django, and Bootstrap.
+
+Steps to use this application:
+1. Download the required modules and packages to run this application without error. The "requirements.txt" file contains all the necessary packages and modules that are required. Therefore, whilst in the "studentCard" directory, enter the following command to install the modules and packages:
+
+                    pip3 install -r requirements.txt
+
+2. Once downloaded, progress into the "studentID" directory. This directory contains the "manage.py" file, which will be used to run the localhost django server for the application.
+
+3. To run the server, enter the following command:
+
+                    python3 manage.py runserver
+
+4. The server will successfully run if all modules and packages requirements have been met and your terminal will start showing live, online feed of the localhost server.
+
+5. Access the form by entering the below link on your desired application's url:
+
+                    localhost:8000/application/form
+
+6. 2 links will be present on the navigation bar; "Form" and "List". The "Form" can be used by the students to enter their necessary details in the form, whilst the "List" can be used by the admins to view the updated database sheet of the students, and make necessary changes to be saved.
+
+NOTE: There is another high-privilege admin page provided by Django, that can be accessed using the link:
+
+                    localhost:8000/application/admin
+
+7. The List will only be shown to the admin, and if the admin is logged in, a new button "Logout" will also appear on the navigation bar for the admin to logout after their use.
+
+The admin can surf through the 'List' page, can preview the student cards created by clicking on the "Card" button in the Card Preview column. Furthermore, the admin can edit the University, and Card status, and save the changes which will also be updated in the Django backend server, including its dB SQLite database provided in the files.  
+
+8. Once done using the server, press CTRL+C or CTRL+Z to terminate the server in your terminal.
+
+9. The images that the student attaches in the form can be accessed in the following folder:
+
+                    studentCard/studentID/media/images
+
+The .svg files are created in the cardBarcode subfolder, in case their barcodes are needed.
+
+NOTE: The filenames of the .png/.jpeg/.svg will be saved with the names of the student ID's input, as required by the client.

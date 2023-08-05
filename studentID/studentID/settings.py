@@ -132,3 +132,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'application/static'),
 )
+
+LOGIN_URL = 'admin:login'
+LOGOUT_URL = 'admin:logout'
+LOGIN_REDIRECT_URL = 'form'

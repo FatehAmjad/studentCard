@@ -1,3 +1,4 @@
+from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
@@ -43,7 +44,7 @@ def studentForm(request):
     
     context = {"form": form}
     return render(request, "application/Form.html", context)
-
+@staff_member_required
 def database_view(request):
     context = {
         "sList" : studentDetails.objects.all()
@@ -54,10 +55,12 @@ def update_status(request):
     if request.method == "POST" and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         student_id = request.POST.get("student_id")
         status = request.POST.get("status")
+        card_status = request.POST.get("card_status")
 
         try:
             student = studentDetails.objects.get(student_id=student_id)
             student.status = status
+            student.card_status = card_status
             student.save()
             return JsonResponse({"message": "Status updated successfully."})
         except studentDetails.DoesNotExist:
