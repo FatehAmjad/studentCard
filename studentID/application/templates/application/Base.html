@@ -4,8 +4,8 @@
 <html>
     <head>
 
-        <link rel="stylesheet" type="text/css" href="{% static 'application/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'application/css/Base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'application/css/bootstrap.min.css' now "U" %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'application/css/Base.css' now "U" %}">
         <script src="{% static 'application/js/bootstrap.min.js' %}"></script> 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -16,7 +16,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Student ID App</a>
+            <a class="navbar-brand" href="#"><img class="logo" src="{% static 'application/images/curtinLogo.jpg' %}" alt="Curtin University"></a>            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,7 +41,7 @@
         {% block content %}{% endblock %}
     </body>
     <footer>
-        &copy; 2023 CurtinUniversity. All rights reserved.<br>
+        Curtin University &copy;. All rights reserved.<br>
         Developed by: Fateh Din Mohammed Amjad
     </footer>
 </html>

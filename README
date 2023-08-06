@@ -20,7 +20,7 @@ Steps to use this application:
 
                     localhost:8000/application/form
 
-6. 2 links will be present on the navigation bar; "Form" and "List". The "Form" can be used by the students to enter their necessary details in the form, whilst the "List" can be used by the admins to view the updated database sheet of the students, and make necessary changes to be saved.
+6. 2 links will be present on the navigation bar; "Form" and "List". The "Form" can be used by the students to enter their necessary details in the form, whilst the "List" can ONLY be used by the admins to view the updated database sheet of the students, and make necessary changes to be saved.
 
 NOTE: There is another high-privilege admin page provided by Django, that can be accessed using the link:
 
@@ -30,7 +30,7 @@ NOTE: There is another high-privilege admin page provided by Django, that can be
 
 The admin can surf through the 'List' page, can preview the student cards created by clicking on the "Card" button in the Card Preview column. Furthermore, the admin can edit the University, and Card status, and save the changes which will also be updated in the Django backend server, including its dB SQLite database provided in the files.  
 
-8. Once done using the server, press CTRL+C or CTRL+Z to terminate the server in your terminal.
+8. Once done using the server, press CTRL+C to terminate the server in your terminal.
 
 9. The images that the student attaches in the form can be accessed in the following folder:
 
